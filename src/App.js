@@ -3,6 +3,7 @@ import React from 'react';
 import Posts from './components/Posts';
 import Post from './components/Post';
 import CreatePost from './components/CreatePost';
+import UpdatePost from './components/UpdatePost';
 import { Router, Link } from '@reach/router';
 import { Menu } from 'antd';
 
@@ -26,9 +27,10 @@ const App = (props) => {
         <Router>
 
                 <Posts default />
-                <CreatePost path="/create_post" />
                 <Post path="post/:id" />
-            </Router>
+                <CreatePost path="create_post" />
+                <UpdatePost path="update_post/:id" />
+          </Router>
         </div>
     )
 }
