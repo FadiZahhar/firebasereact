@@ -28,7 +28,7 @@ const CreatePost = (props) => {
 
         setTitle('');
         setContent('');
-        navigate('/posts');
+        navigate('/blogs/:uid/posts');
 
     }
 

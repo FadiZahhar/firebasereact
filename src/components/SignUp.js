@@ -20,7 +20,7 @@ const SignUp = (props) => {
         auth.createUserWithEmailAndPassword(email, password)
             .then(function (result) {
                 console.log('user signed up ');
-                navigate('/posts');
+                navigate('/blogs/:uid/posts');
             })
             .catch(function (error) {
                 console.log('error in signup')

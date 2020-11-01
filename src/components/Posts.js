@@ -10,7 +10,9 @@ const Posts = (props) => {
 
     const [posts, setPosts] = useState([])
     useEffect(() => {
-        db.collection('users').doc(props.user.uid).collection('posts')
+
+        let userId = props?.user.uid ? props?.user.uid : props.uid
+        db.collection('users').doc(userId).collection('posts')
             .onSnapshot(async posts => { // allows to subscribes
                 let postsData = await posts.docs.map(post => {
                     let data = post.data()
@@ -44,6 +46,7 @@ const Posts = (props) => {
                             title={_.capitalize(article.title)}
                             content={article.content.substring(0, 1000)}
                             user={props.user}
+                            uid={props.uid}
                         />
                     ))
                 }

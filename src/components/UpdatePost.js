@@ -38,7 +38,7 @@ const UpdatePost = (props) => {
                 console.log("document successfully updated!",doc);
             });
 
-        navigate('/posts');
+        navigate('/blogs/:uid/posts');
 
     }
 
