@@ -10,21 +10,20 @@ const Posts = (props) => {
 
     const [posts, setPosts] = useState([])
     useEffect(() => {
-        let postsRef = db.collection('posts')
-
-        postsRef
-            .get()
-            .then(posts => {
-                posts.forEach(post => {
+        db.collection('posts')
+            .onSnapshot(async posts => { // allows to subscribes
+                let postsData = await posts.docs.map(post => {
                     let data = post.data()
-                    let {id} = post
+                    let { id } = post
                     let payload = {
                         id,
                         ...data
                     }
-                    setPosts((posts) => [...posts,payload])
-                })
-            })
+                    return payload
+                });
+
+                setPosts()
+            }) // end on snapshot
     },[])
     return (
         <div className="posts_container">
