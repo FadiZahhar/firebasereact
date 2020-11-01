@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { PageHeader } from 'antd';
 import PostSnippet from './PostSnippet';
-import api from '../mock_api';
+//import api from '../mock_api';
 import _ from 'lodash';
 import db from '../firebase';
 
@@ -43,7 +43,8 @@ const Posts = (props) => {
                             key={idx}
                             id={article.id}
                             title={_.capitalize(article.title)}
-                            content={article.content.substring(0,1000)}
+                            content={article.content.substring(0, 1000)}
+                            user={props.user}
                         />
                     ))
                 }

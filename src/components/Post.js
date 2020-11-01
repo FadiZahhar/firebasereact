@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { PageHeader, Card } from 'antd';
-import api from '../mock_api';
+//import api from '../mock_api';
 import db from '../firebase';
 
 const Post = (props) => {

@@ -10,9 +10,15 @@ const PostSnippet = (props) => {
                 type="inner"
                 title={props.title}
                 extra={
-                    <div class="post_snippet_links">
-                    <Link to={`/post/${props.id}`} style={{ marginRight:'20px' }} >Read Full Article</Link>
-                    <Link to={`/update_post/${props.id}`}>Edit</Link>
+                    <div className="post_snippet_links">
+                        <Link to={`/post/${props.id}`} style={{ marginRight: '20px', float: 'left' }} >Read Full Article</Link>
+                        {
+                            props.user &&
+                            <div className="post_eidt_links">
+                                <Link to={`/update_post/${props.id}`}>Edit</Link>
+                                <Link to={`/delete_post/${props.id}`}>Delete</Link>
+                            </div>
+                        }
                     </div>
                 }
             >
