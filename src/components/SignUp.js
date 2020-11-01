@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { PageHeader, Input, Button } from 'antd';
 import { auth } from '../firebase';
-import { Redirect, Link } from '@reach/router';
+import { navigate, Link } from '@reach/router';
 
 const SignUp = (props) => {
 
@@ -20,7 +20,7 @@ const SignUp = (props) => {
         auth.createUserWithEmailAndPassword(email, password)
             .then(function (result) {
                 console.log('user signed up ');
-                navigate('/sing_in');
+                navigate('/posts');
             })
             .catch(function (error) {
                 console.log('error in signup')

@@ -7,7 +7,7 @@ const PostSnippet = (props) => {
 
     const onDeletePost = () => {
         console.log('post being deleted');
-        let postRef = db.collection('posts').doc(props.id);
+        let postRef = db.collection('users').doc(props.user.uid).collection('posts').doc(props.id);
         postRef.delete();
     }
 

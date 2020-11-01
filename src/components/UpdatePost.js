@@ -10,7 +10,7 @@ const UpdatePost = (props) => {
     const [content, setContent] = useState('');
 
     useEffect(() => {
-        let postRef = db
+        let postRef = db.collection('users').doc(props.user.uid)
         .collection('posts')
             .doc(props.id)
         postRef
@@ -30,7 +30,7 @@ const UpdatePost = (props) => {
     }
 
     const onUpdatePost = () => {
-        let postRef = db.collection('posts').doc(props.id);
+        let postRef = db.collection('users').doc(props.user.uid).collection('posts').doc(props.id);
         let payload = { title, content }
 
         postRef.update(payload)

@@ -18,13 +18,9 @@ const CreatePost = (props) => {
     }
 
     const onCreatePost = () => {
-        let postRef = db.collection('posts');
-
-        content.split('\n').map((Paragraph, idx) => {
-            return <p key={idx}>{Paragraph}</p>
-        })
-
+        let postRef = db.collection('users').doc(props.user.uid).collection('posts');
         let payload = { title, content }
+
         postRef.add(payload)
             .then(function (doc) {
                 console.log("document successfully written", doc.id);
