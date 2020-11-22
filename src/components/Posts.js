@@ -34,7 +34,7 @@ const Posts = (props) => {
                 style={{
                     border: '1px solid rbg(235, 237, 240)',
                 }}
-                title="Posts"
+                title="All Materials"
             />
             </div>
             <div className="articles_container">

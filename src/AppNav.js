@@ -22,7 +22,7 @@ const AppNav = (props) => {
         <div className="app_main_navigation">
           <Menu mode="horizontal">
             <Menu.Item key="posts">
-              <Link to={`/blogs/${props.user.uid}/posts`}>Posts</Link>
+              <Link to={`/blogs/${props.user.uid}/posts`}>All Materials</Link>
             </Menu.Item>
 
             {

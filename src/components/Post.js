@@ -37,9 +37,6 @@ const Post = (props) => {
 
             <div className="post_conten_container">
                 <Card style={{ marginTop: '20px' }}>
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
-                    <br /><br /><br />
-
                     <Media>
                 <div className="media">
                 <div className="media-player">
@@ -56,10 +53,11 @@ const Post = (props) => {
                     <Fullscreen />
                 </div>
                 </div>
-                    </Media>
-                    
+            </Media>
                 </Card>
-
+                <br /><br /><br />
+                <div dangerouslySetInnerHTML={{ __html: content }} />
+                <div style={{ height: '100px' }}>&nbsp;</div>
             </div>
         </div>
     )
