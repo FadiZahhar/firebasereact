@@ -18,7 +18,7 @@ const App = (props) => {
     if (user) {
       // user is signed in.
       console.log('user is signed in');
-      
+
     } else {
       // no user is signed in.
       console.log('no user is signed in ');
