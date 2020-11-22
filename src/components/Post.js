@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { PageHeader, Card } from 'antd';
 //import api from '../mock_api';
 import db from '../firebase';
+import { Media, Player, controls } from 'react-media-player'
+const { PlayPause, MuteUnmute, CurrentTime , Progress , SeekBar, Duration, Volume , Fullscreen } = controls
 
 const Post = (props) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [video, setVideo] = useState('');
 
     useEffect(() => {
         let postRef = db
@@ -15,9 +18,10 @@ const Post = (props) => {
             .doc(props.id)
         postRef
             .get().then(doc => {
-                let {content, title} = doc.data();
+                let {content, title, video} = doc.data();
                 setTitle(title)
                 setContent(content)
+                setVideo(video)
             })
     },[])
     return (
@@ -32,14 +36,30 @@ const Post = (props) => {
             </div>
 
             <div className="post_conten_container">
-                <Card style={{ marginTop: '20px' }}>{
+                <Card style={{ marginTop: '20px' }}>
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                    <br /><br /><br />
 
-                    content.split('\n').map((paragraph, idx) => {
-                        return <p key={idx}>{paragraph}</p>;
-                    })
-                }
-
+                    <Media>
+                <div className="media">
+                <div className="media-player">
+                            <Player src={video}  style={{width: '100%'}}/>
+                </div>
+                <div className="media-controls">
+                   <PlayPause />
+                   <CurrentTime />
+                    <Progress />
+                    <SeekBar />
+                    <Duration />
+                    <MuteUnmute />
+                    <Volume />
+                    <Fullscreen />
+                </div>
+                </div>
+                    </Media>
+                    
                 </Card>
+
             </div>
         </div>
     )

@@ -1,8 +1,10 @@
 import db from '../firebase';
 import React, { useState } from 'react';
-import { PageHeader, Input, Button, Select } from 'antd';
+import { PageHeader, Input, Button, Select, DatePicker } from 'antd';
+import 'antd/dist/antd.css';
 import { navigate } from '@reach/router';
-const { TextArea } = Input;
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const { Option } = Select;
 
 const CreatePost = (props) => {
@@ -10,6 +12,7 @@ const CreatePost = (props) => {
     const [material, setMaterial] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [materialDate, setMaterialDate] = useState('');
     const [video, setVideo] = useState('');
 
     const onMaterialChange = (event) => {
@@ -28,9 +31,14 @@ const CreatePost = (props) => {
         setContent(event.target.value);
     }
 
+   const onDateChange = (date, dateString) => {
+
+        setMaterialDate(dateString);
+    }
+
     const onCreatePost = () => {
         let postRef = db.collection('users').doc(props.user.uid).collection('posts');
-        let payload = { title, content, video }
+        let payload = { material, title, content, materialDate, video }
 
         postRef.add(payload)
             .then(function (doc) {
@@ -40,6 +48,7 @@ const CreatePost = (props) => {
         setMaterial('');
         setTitle('');
         setContent('');
+        setMaterialDate('');
         setVideo('');
         navigate('/blogs/:uid/posts');
 
@@ -90,11 +99,38 @@ const CreatePost = (props) => {
                         <h2>Context</h2>
                     </div>
 
-                        <div className="post_input">
-                        <TextArea rows={10} onChange={onContentChange} value={content} />
+                    <div className="post_input">
+                        <CKEditor
+                    editor={ ClassicEditor }
+                    data={content}
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        setContent(data);
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
+
                         </div>
                 </div>
 
+
+                <div className="post_input_container">
+                    <div className="post_input_video">
+                        <h2>Date of material</h2>
+                    </div>
+                        <div className="post_input">
+                        <DatePicker size="large" onChange={onDateChange} />
+                        </div>
+                </div>
 
 
                 <div className="post_input_container">

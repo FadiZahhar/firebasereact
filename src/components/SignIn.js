@@ -20,7 +20,8 @@ const SignIn = (props) => {
         auth.signInWithEmailAndPassword(email, password)
             .then(function (result) {
                 console.log('user signed in ');
-                navigate('/blogs/:uid/posts');
+                console.log(result);
+                navigate('/blogs/'+result.user.uid+'/posts');
 
             }).catch(function (error) {
                 console.log('error in sigin in');
