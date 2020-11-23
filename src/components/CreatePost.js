@@ -50,7 +50,7 @@ const CreatePost = (props) => {
         setContent('');
         setMaterialDate('');
         setVideo('');
-        navigate('/blogs/:uid/posts');
+        navigate('/blogs/'+props.user.uid+'/posts');
 
     }
 
@@ -74,7 +74,8 @@ const CreatePost = (props) => {
                     </div>
                         <div className="post_input">
                         <Select defaultValue={material} style={{ width: 120 }} onChange={onMaterialChange}>
-                         <Option value="arabic">Arabic</Option>
+                            <Option value="arabic">Arabic</Option>
+                            <Option value="english">English</Option>
                           <Option value="french">French</Option>
                          <Option value="culture">Culture</Option>
                          <Option value="science">Science</Option>
