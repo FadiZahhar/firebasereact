@@ -100,7 +100,9 @@ const onTitleChange = (event) => {
                           <Option value="french">French</Option>
                          <Option value="culture">Culture</Option>
                          <Option value="science">Science</Option>
-                         <Option value="science">Math</Option>
+                          <Option value="math">Math</Option>
+                            <Option value="music">Music</Option>
+                            <Option value="movies">Movies</Option>
                         </Select>
                         </div>
                 </div>
